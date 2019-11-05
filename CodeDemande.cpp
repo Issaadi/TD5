@@ -36,6 +36,7 @@ EnteteDib
 lireEnteteFichier ( fstream& fichier )
 {
 	// TODO: Lire l'entête DIB du fichier donné et la retourner.
+	
 	return {};
 }
 
