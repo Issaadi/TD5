@@ -35,8 +35,14 @@ using namespace iter;
 EnteteDib
 lireEnteteFichier ( fstream& fichier )
 {
+	
 	// TODO: Lire l'entête DIB du fichier donné et la retourner.
-	return {};
+
+	EnteteDib enteteDib;
+
+	fichier.seekg(sizeof(EnteteBmp));
+	fichier.read((char*)& enteteDib, sizeof(EnteteDib));
+	return enteteDib;
 }
 
 
@@ -44,8 +50,13 @@ void
 lireDonneesImage ( fstream& fichier, Image& image )
 {
 	// TODO: Se positionner au début du tableau de pixels dans le fichier.
+	fichier.seekg(sizeof(EnteteBmp));
+	fichier.seekg(sizeof(EnteteDib));
 	
 	// TODO: Pour chaque ligne de l'image, lire la ligne et sauter le padding.
+	int taillePadding = calculerTaillePadding(image);
+
+	fichier.read((char*)&image.pixels, image.largeur-taillePadding);
 }
 
 
