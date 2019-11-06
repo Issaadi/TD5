@@ -55,7 +55,7 @@ lireDonneesImage(fstream& fichier, Image& image)
 
 	// TODO: Pour chaque ligne de l'image, lire la ligne et sauter le padding.
 
-	int taillePadding = calculerTaillePadding(image);
+	unsigned taillePadding = calculerTaillePadding(image);
 
 
 	for (int j = 0; j < image.hauteur;j++) {
