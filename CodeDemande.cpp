@@ -47,16 +47,24 @@ lireEnteteFichier ( fstream& fichier )
 
 
 void
-lireDonneesImage ( fstream& fichier, Image& image )
+lireDonneesImage(fstream& fichier, Image& image)
 {
 	// TODO: Se positionner au début du tableau de pixels dans le fichier.
 	fichier.seekg(sizeof(EnteteBmp));
 	fichier.seekg(sizeof(EnteteDib));
-	
+
 	// TODO: Pour chaque ligne de l'image, lire la ligne et sauter le padding.
+
 	int taillePadding = calculerTaillePadding(image);
 
-	fichier.read((char*)&image.pixels, image.largeur-taillePadding);
+
+	for (int j = 0; j < image.hauteur;j++) {
+		for (int i = 0; i < (image.largeur - taillePadding);i++) {
+			fichier.read((char*)&image.pixels[i][j], sizeof(Pixel));
+		}
+		
+	}
+
 }
 
 
