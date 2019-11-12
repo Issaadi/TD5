@@ -51,18 +51,17 @@ void
 lireDonneesImage(fstream& fichier, Image& image)
 {
 	// TODO: Se positionner au début du tableau de pixels dans le fichier.
-	fichier.seekg(sizeof(EnteteBmp));
-	fichier.seekg(sizeof(EnteteDib));
+	fichier.seekg(sizeof(EnteteBmp) + sizeof(EnteteDib));
 
 	// TODO: Pour chaque ligne de l'image, lire la ligne et sauter le padding.
-
+	span <Pixel*> pixelColonne(image.pixels, image.hauteur);
+	unsigned sizeOfLine = image.largeur * sizeof(Pixel);
+	
 	unsigned taillePadding = calculerTaillePadding(image);
 
+	for (Pixel* ligneP : pixelColonne) {
 
-	for (int j = 0; j < image.hauteur;j++) {
-		for (int i = 0; i < (image.largeur);i++) {
-			fichier.read((char*)&image.pixels[i][j], sizeof(Pixel));
-		}
+		fichier.read((char*)ligneP, sizeOfLine);
 		fichier.seekg(taillePadding, ios::cur);
 	}
 
@@ -74,36 +73,44 @@ ecrireDonneesImage ( fstream& fichier, const Image& image )
 {
 	// TODO: Se positionner au début du tableau de pixels dans le fichier (après
 	//       les entêtes).
-	fichier.seekg(sizeof(EnteteBmp));
-	fichier.seekg(sizeof(EnteteDib));
+	fichier.seekp(sizeof(EnteteBmp)+ sizeof(EnteteDib), ios::beg);
 	
 	// TODO: Pour chaque ligne de l'image, écrire la ligne puis écrire des bytes
 	//       à zéro pour le padding.
-	unsigned taillePadding = calculerTaillePadding(image);
-	fichier.seekp(2 * sizeof(Pixel), ios::beg);
-	int valeur = 0;
-	for (int j = 0; j < image.hauteur; j++) {
-		for (int i = 0; i < image.largeur ; i++) {
-			
-			fichier.write((char*)&image.pixels[j][i], sizeof(Pixel));
-		}
-		fichier.write((char*)&valeur, sizeof(taillePadding));
+	span <Pixel*> pixelColonne(image.pixels, image.hauteur);
+	unsigned sizeOfLine = image.largeur * sizeof(Pixel);
+	unsigned paddingSize = sizeof(calculerTaillePadding(image));
+	uint32_t valeur = 0;
+	for (Pixel* lignePixel : pixelColonne) {
+			fichier.write((const char*)lignePixel, sizeOfLine);
+			fichier.write((const char*)&valeur, paddingSize);
 	}
+	
 
-	fichier.close();
-
+	 //fichier.close();
 }
 
 
 void
 ecrireImage(const string& nomFichier, const Image& image, bool& ok)
 {
-	// TODO: Ouvrir un fichier en écriture binaire.
-	fstream fichier(nomFichier, ios::out | ios::binary);
-	// Si l'ouverture n'a pas échouée :
-	if (fichier.fail()) cout << boolalpha << !ok << endl;
 	
-	else cout << boolalpha << ok << endl;
+	// TODO: Ouvrir un fichier en écriture binaire.
+	fstream fichier;
+
+	fichier.open(nomFichier, ios::out | ios::binary );
+	
+	// Si l'ouverture n'a pas échouée :
+	ok = !fichier.fail();
+	if ( !ok ) {
+		fichier.open(nomFichier, ios::out | ios::binary | ios::trunc);
+		if (fichier.fail()) {
+			cout << boolalpha << !ok << endl;
+		}
+		else cout << boolalpha << ok << endl;
+		return;
+	}
+	  
 
 
 				 
