@@ -130,11 +130,24 @@ allouerImage ( unsigned largeur, unsigned hauteur )
 {
 	// Si la largeur ET la hauteur ne sont pas nulles :
 		// TODO: Affecter les dimensions à l'image.
-		
+	Image image = {};
+	if (largeur && hauteur != 0) {
+
+		image.largeur = largeur;
+		image.hauteur = hauteur;
+
 		// TODO: Allouer un tableau dynamique de pixels pour l'image.
 		//       On veut Image::hauteur de lignes qui ont chacune
 		//       Image::largeur de pixels.
-	return {}; // TODO: Retourner ce qu'il faut.
+		Pixel** pixel = new Pixel * [hauteur];
+		span <Pixel*> pixelCol(image.pixels, image.hauteur);
+
+		for (int x : range(hauteur)) {
+			pixel[x] = new Pixel[largeur];
+			image.pixels = pixel;
+		}
+	}
+	return {image}; // TODO: Retourner ce qu'il faut.
 }
 
 
@@ -143,6 +156,17 @@ desallouerImage ( Image& image )
 {
 	// Si le tableau dynamique de l'image n'est pas nul :
 		// TODO: Désallouer le tableau 2D.
+	span <Pixel*> pixelLigne(image.pixels, image.hauteur);
+	
+	for (Pixel* ligneCol : pixelLigne) {
+		if (image.pixels[pixelLigne.at] != nullptr) {
+			delete[] image.pixels[pixelLigne.at];
+			delete[] image.pixels;
+			image.pixels = NULL;
+		}
+		
+	}
+	
 }
 
 
@@ -150,9 +174,14 @@ Image
 copierImage ( const Image& image )
 {
 	// TODO: Allouer une image de la même taille que celle donnée.
-	
+	Image imageC = allouerImage(image.largeur, image.hauteur);
 	// TODO: Copier tous les pixels.
-	return {}; // TODO: Retourner ce qu'il faut.
+	for (int i : range(image.hauteur)) {
+		for (int j : range(image.largeur)) {
+			imageC.pixels[i][j] = image.pixels[i][j];
+		}
+	}
+	return {imageC}; // TODO: Retourner ce qu'il faut.
 }
 
 
