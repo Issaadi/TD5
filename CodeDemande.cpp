@@ -153,7 +153,7 @@ desallouerImage ( Image& image )
 {
 	// Si le tableau dynamique de l'image n'est pas nul :
 		// TODO: Désallouer le tableau 2D.
-	span <Pixel*> pixelLigne(image.pixels, image.hauteur);
+	/*span <Pixel*> pixelLigne(image.pixels, image.hauteur);
 	
 	for (Pixel* ligneCol : pixelLigne) {
 		if (image.pixels[pixelLigne.at] != nullptr) {
@@ -162,6 +162,14 @@ desallouerImage ( Image& image )
 			image.pixels = NULL;
 		}
 		
+	}
+	*/
+
+	for (int i : range(image.hauteur)) {
+		if (image.pixels[i] != nullptr) {
+			delete[] image.pixels[i];
+			image.pixels[i] = 0;
+		}
 	}
 	
 }
