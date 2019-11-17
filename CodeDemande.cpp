@@ -54,17 +54,17 @@ lireDonneesImage(fstream& fichier, Image& image)
 	fichier.seekg(sizeof(EnteteBmp) + sizeof(EnteteDib));
 
 	// TODO: Pour chaque ligne de l'image, lire la ligne et sauter le padding.
-	span <Pixel*> pixelColonne(image.pixels, image.hauteur);
+	span <Pixel*> pixelLigne(image.pixels, image.hauteur);
 	unsigned sizeOfLine = image.largeur * sizeof(Pixel);
 	
 	unsigned taillePadding = calculerTaillePadding(image);
 
-	for (Pixel* ligneP : pixelColonne) {
+	for (Pixel* colonneP : pixelLigne) {
 
-		fichier.read((char*)ligneP, sizeOfLine);
+		fichier.read((char*)colonneP, sizeOfLine);
 		fichier.seekg(taillePadding, ios::cur);
 	}
-
+	
 }
 
 
@@ -111,9 +111,6 @@ ecrireImage(const string& nomFichier, const Image& image, bool& ok)
 		return;
 	}
 	  
-
-
-				 
 		// TODO: Construire les entêtes à partir de l'image.
 	EnteteBmp bmp = construireEnteteBmp(image);
 	EnteteDib dib = construireEnteteDib(image);
@@ -139,13 +136,13 @@ allouerImage ( unsigned largeur, unsigned hauteur )
 		// TODO: Allouer un tableau dynamique de pixels pour l'image.
 		//       On veut Image::hauteur de lignes qui ont chacune
 		//       Image::largeur de pixels.
-		Pixel** pixel = new Pixel * [hauteur];
-		span <Pixel*> pixelCol(image.pixels, image.hauteur);
+		Pixel** pixel = new Pixel* [hauteur];
 
 		for (int x : range(hauteur)) {
 			pixel[x] = new Pixel[largeur];
-			image.pixels = pixel;
+			
 		}
+		image.pixels = pixel;
 	}
 	return {image}; // TODO: Retourner ce qu'il faut.
 }
@@ -189,24 +186,41 @@ Image
 lireImage ( const string& nomFichier, bool& ok )
 {
 	// TODO: Ouvrir le fichier en lecture binaire.
-	
+	fstream fichier;
+	Image imageC;
+	fichier.open(nomFichier, ios::out | ios::binary);
+
 	// Si l'ouverture n'a pas échouée :
+	if (ok) {
 		// TODO: Lire l'entête DIB.
-		
+		EnteteDib enteteDib = lireEnteteFichier(fichier);
+
 		// TODO: Allouer une image selon le contenu du DIB.
-		
+		imageC = allouerImage(enteteDib.largeurImage, enteteDib.hauteurImage);
+
 		// TODO: Lire les pixels du fichier.
-	return {};  // TODO: Retourner ce qu'il faut.
+		lireDonneesImage(fichier, imageC);
+	}
+	
+	return imageC;  // TODO: Retourner ce qu'il faut.
 }
 
 
 Image
 extraireRectangle ( const Image& image, const Rectangle& zone )
 {
+	Image imageA;
 	// Si la zone demandée est valide :
+	if (estZoneValide(image, zone)) {
 		// TODO: Allouer une image de la taille de la zone à extraire.
-		
+		imageA = allouerImage(zone.coin2.x - zone.coin1.x, zone.coin2.y - zone.coin1.y);
+
 		// TODO: Copier les pixels de la zone.
+		imageA = copierImage(image);
+	}
+		
+		
+		
 	return {};  // TODO: Retourner ce qu'il faut.
 }
 
