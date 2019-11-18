@@ -1,0 +1,284 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.8"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5,
+						6,
+						7,
+						8,
+						9,
+						10,
+						11,
+						12,
+						13,
+						14,
+						15,
+						16,
+						17,
+						18,
+						19,
+						20,
+						21,
+						22,
+						23,
+						24,
+						25
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "cppitertools_examples",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5,
+						6,
+						7,
+						8,
+						9,
+						10,
+						11,
+						12,
+						13,
+						14,
+						15,
+						16,
+						17,
+						18,
+						19,
+						20,
+						21,
+						22,
+						23,
+						24,
+						25
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "accumulate_examples::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-accumulate_examples-Debug-2f0b5865186e4181ae1c.json",
+					"name" : "accumulate_examples",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "chain_examples::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-chain_examples-Debug-a04f3d3d0b1062c8d003.json",
+					"name" : "chain_examples",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "chunked_examples::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-chunked_examples-Debug-7834c29d9deae69b217c.json",
+					"name" : "chunked_examples",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "combinatoric_examples::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-combinatoric_examples-Debug-515b3bae2708eadbe084.json",
+					"name" : "combinatoric_examples",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "compress_examples::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-compress_examples-Debug-0135bf4c2c47bf7c250b.json",
+					"name" : "compress_examples",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "count_examples::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-count_examples-Debug-77337dd42b7ada51d08d.json",
+					"name" : "count_examples",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "cycle_examples::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-cycle_examples-Debug-ef58dae3deaa25be234d.json",
+					"name" : "cycle_examples",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "dropwhile_examples::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-dropwhile_examples-Debug-1cb2c423b04091e6843f.json",
+					"name" : "dropwhile_examples",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "enumerate_examples::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-enumerate_examples-Debug-30eb349578d3c9d3ea79.json",
+					"name" : "enumerate_examples",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "filter_examples::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-filter_examples-Debug-97bc3205094835750505.json",
+					"name" : "filter_examples",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "filterfalse_examples::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-filterfalse_examples-Debug-e5fffa1306e09fb86bc0.json",
+					"name" : "filterfalse_examples",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "groupby_examples::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-groupby_examples-Debug-68df0e00e1a641efe431.json",
+					"name" : "groupby_examples",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "imap_examples::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-imap_examples-Debug-0157f285430b318a8d83.json",
+					"name" : "imap_examples",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "mixed_examples::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-mixed_examples-Debug-8d9f01913ec860431fae.json",
+					"name" : "mixed_examples",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "range_examples::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-range_examples-Debug-9b29d044a92934ce5b0d.json",
+					"name" : "range_examples",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "repeat_examples::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-repeat_examples-Debug-c4b09bda33dad6e47b28.json",
+					"name" : "repeat_examples",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "reversed_examples::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-reversed_examples-Debug-f2a35d050bcf3ef27596.json",
+					"name" : "reversed_examples",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "slice_examples::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-slice_examples-Debug-04f75e5271d0648b9dce.json",
+					"name" : "slice_examples",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "sliding_window_examples::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-sliding_window_examples-Debug-0040483bc3c430975174.json",
+					"name" : "sliding_window_examples",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "sorted_examples::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-sorted_examples-Debug-57b248b20116af91c4c2.json",
+					"name" : "sorted_examples",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "starmap_examples::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-starmap_examples-Debug-6a64a9fb0663ce7bdf25.json",
+					"name" : "starmap_examples",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "takewhile_examples::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-takewhile_examples-Debug-26bc4b5e574fb5519d99.json",
+					"name" : "takewhile_examples",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "unique_everseen_examples::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-unique_everseen_examples-Debug-c3028d0b8e21b4c6b003.json",
+					"name" : "unique_everseen_examples",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "unique_justseen_examples::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-unique_justseen_examples-Debug-bbc20adf0e8ce0b7e1ac.json",
+					"name" : "unique_justseen_examples",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "zip_examples::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-zip_examples-Debug-347afce3506184f1f312.json",
+					"name" : "zip_examples",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "zip_longest_examples::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-zip_longest_examples-Debug-d5e91b10505d1c249926.json",
+					"name" : "zip_longest_examples",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "C:/Users/felix/Source/Repos/TD5/cppitertools/examples/out/build/x64-Debug",
+		"source" : "C:/Users/felix/Source/Repos/TD5/cppitertools/examples"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 0
+	}
+}

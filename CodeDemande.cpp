@@ -33,7 +33,14 @@ using namespace iter;
 
 #pragma region "Fonctions" //{
 
+
+
 EnteteDib
+/*
+Lire l'entête DIB du fichier donné et la retourner.
+*	\param [in] fichier: fichier qu'on doit lire les entêtes
+*	\param return les entête de type DIB
+*/
 lireEnteteFichier ( fstream& fichier )
 {
 	
@@ -48,6 +55,11 @@ lireEnteteFichier ( fstream& fichier )
 
 
 void
+/*
+Lit les lignes de l'image en parametre
+*	\param [in-out] fichier: fichier qu'on doit lire et qu'on doit sauter le padding
+*	\param [in] image: image qu'on doit lire les lignes
+*/
 lireDonneesImage(fstream& fichier, Image& image)
 {
 	// TODO: Se positionner au début du tableau de pixels dans le fichier.
@@ -69,6 +81,11 @@ lireDonneesImage(fstream& fichier, Image& image)
 
 
 void
+/*
+Ecrire les lignes de l'image dans le fichier
+*	\param [in-out] fichier: fichier vide, qui va acceuillir les donnees de l'image
+*	\param [in] image: image, qui contient les donnees necessaire a la formation du fichier
+*/
 ecrireDonneesImage ( fstream& fichier, const Image& image )
 {
 	// TODO: Se positionner au début du tableau de pixels dans le fichier (après
@@ -92,6 +109,12 @@ ecrireDonneesImage ( fstream& fichier, const Image& image )
 
 
 void
+/*
+Creez les entetes et ecrire ces dernieres + les pixels dans le fichier
+*	\param [in-out] fichier: fichier vide, qui va acceuillir les donnees de l'image
+*	\param [in] image: image qui contient les entetes et les pixels pour la formation du fichier
+*	\param [in] ok: boolean qui dit si le fichier s'ouvre bien ou non
+*/
 ecrireImage(const string& nomFichier, const Image& image, bool& ok)
 {
 	
@@ -123,6 +146,13 @@ ecrireImage(const string& nomFichier, const Image& image, bool& ok)
 
 
 Image
+/*
+Creez les dimensions de limage et alloue de l'espace memoire a cette derniere
+*	\param [in] largeur: nombre entier qui designe la largeur de l'image
+*	\param [in] hauteur: nombre entier qui designe la hauteur de l'image
+
+*	\param return Image
+*/
 allouerImage ( unsigned largeur, unsigned hauteur )
 {
 	// Si la largeur ET la hauteur ne sont pas nulles :
@@ -149,21 +179,13 @@ allouerImage ( unsigned largeur, unsigned hauteur )
 
 
 void
+/*
+Remet les pixels de l'image à 0
+*	\param [in-out] image: image dont les pixels vont se mettre a 0 et que l'espace allouer sera perdue
+*/
 desallouerImage ( Image& image )
 {
-	// Si le tableau dynamique de l'image n'est pas nul :
-		// TODO: Désallouer le tableau 2D.
-	/*span <Pixel*> pixelLigne(image.pixels, image.hauteur);
 	
-	for (Pixel* ligneCol : pixelLigne) {
-		if (image.pixels[pixelLigne.at] != nullptr) {
-			delete[] image.pixels[pixelLigne.at];
-			delete[] image.pixels;
-			image.pixels = NULL;
-		}
-		
-	}
-	*/
 
 	for (int i : range(image.hauteur)) {
 		if (image.pixels[i] != nullptr) {
@@ -171,11 +193,18 @@ desallouerImage ( Image& image )
 			image.pixels[i] = 0;
 		}
 	}
+	delete[] image.pixels;
+	image.pixels = NULL;
 	
 }
 
 
 Image
+/*
+Copie une image dans une nouvelle image vide
+*	\param [in] image: image qui va se faire copier
+*	\param return image
+*/
 copierImage ( const Image& image )
 {
 	// TODO: Allouer une image de la même taille que celle donnée.
@@ -191,6 +220,12 @@ copierImage ( const Image& image )
 
 
 Image
+/*
+Lit un fichier bmp et retourne une image créee a partir du fichier
+*	\param [in] fichier: fichier qui contient les donnees pour la creation de l'image
+*	\param [in] ok: boolean qui sert a verifier louverture du fichier
+*	\param return image
+*/
 lireImage ( const string& nomFichier, bool& ok )
 {
 	// TODO: Ouvrir le fichier en lecture binaire.
@@ -217,6 +252,12 @@ lireImage ( const string& nomFichier, bool& ok )
 
 
 Image
+/*
+Creer une rectangle sur la zone desiree et retourne la partie de l'image dans le rectangle
+*	\param [in] image: image source qu'on desire avoir une partie
+*	\param [in] zone: dimensions de la partie de l'image qu'on veut prendre (rectangle)
+*	\param return image desiree
+*/
 extraireRectangle ( const Image& image, const Rectangle& zone )
 {
 	Image imageA = {};

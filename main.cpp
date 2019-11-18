@@ -184,10 +184,11 @@ void executerPartie2 ( )
 			// TODO: Écrire (écraser) le fichier de la grande image modifiée.
 			//       Le nom du fichier est donné par « nomFichierPartie2 ».
 			ecrireImage(nomFichierPartie2, imageTotale, ok);
-			if (ok)
-				cout << "Ecriture de l'image : OK\n\n";
 
-			//desallouerImage(imageExtraite);
+			cout << "Ecriture de l'image OK : " << ok << "\n\n";
+
+			desallouerImage(imageExtraite);
+			desallouerImage(imageTotale);
 
 		}
 		
