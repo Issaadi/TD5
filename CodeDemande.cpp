@@ -195,11 +195,13 @@ lireImage ( const string& nomFichier, bool& ok )
 {
 	// TODO: Ouvrir le fichier en lecture binaire.
 	fstream fichier;
-	Image imageC;
-	fichier.open(nomFichier, ios::out | ios::binary);
-
+	Image imageC={};
+	fichier.open(nomFichier, ios::in | ios::binary);
+	ok = !fichier.fail();
 	// Si l'ouverture n'a pas échouée :
-	if (ok) {
+	if (!ok) {
+		cout << "la lecture du fichier a echouee";
+	}else{
 		// TODO: Lire l'entête DIB.
 		EnteteDib enteteDib = lireEnteteFichier(fichier);
 
@@ -217,19 +219,20 @@ lireImage ( const string& nomFichier, bool& ok )
 Image
 extraireRectangle ( const Image& image, const Rectangle& zone )
 {
-	Image imageA;
+	Image imageA = {};
 	// Si la zone demandée est valide :
 	if (estZoneValide(image, zone)) {
 		// TODO: Allouer une image de la taille de la zone à extraire.
 		imageA = allouerImage(zone.coin2.x - zone.coin1.x, zone.coin2.y - zone.coin1.y);
 
 		// TODO: Copier les pixels de la zone.
-		imageA = copierImage(image);
+		for (unsigned i : range(imageA.largeur)) {
+			for (unsigned j : range(imageA.hauteur)) {
+				imageA.pixels[i][j] = image.pixels[i + zone.coin1.x][j + zone.coin1.y];
+			}
+		}
 	}
-		
-		
-		
-	return {};  // TODO: Retourner ce qu'il faut.
+	return imageA;  // TODO: Retourner ce qu'il faut.
 }
 
 #pragma endregion //}

@@ -126,28 +126,73 @@ void executerPartie2 ( )
 	// TODO: Lire le fichier d'image originale. Le nom du fichier est donné par
 	//       «nomFichierOriginal». Vérifier l'ouverture et afficher si celle-ci
 	//       a réussie. Quittez si elle a échoué.
+	fstream fichier;
 
-	cout << "Entrez '" << commandeFin << "' comme nom d'image pour quitter." << "\n\n";
+	fichier.open(nomFichierOriginal, ios::in | ios::binary);
+	ok = !fichier.fail();
 
-	// Tant que l'utilisateur n'entre pas «commandeFin» :
-		// TODO: Demander et lire le nom de l'image à extraire.
+	if (!ok) {
+		cout << "Erreur de lecture du fichier";
+		exit(0);
+	}
+	else {
+		cout << "Lecture du fichier reussie";
+		cout << "Entrez '" << commandeFin << "' comme nom d'image pour quitter." << "\n\n";
 
-		// TODO: Construire le nom de fichier de l'image extraite en utilisant
-		//       la fonction construireNomFichierResultat()
+		// Tant que l'utilisateur n'entre pas «commandeFin» :
+		while (true) {
 
-		// TODO: Demander et lire les coins du rectangle à extraire.
-		//       ex.: Coin inferieur gauche (x y) : 580 410
+			// TODO: Demander et lire le nom de l'image à extraire.
+			string nomImageAExtraire = "", nomFichierExtrait = "";
+			Point p1, p2;
+			cout << "Nom de l'image a extraire : ";
+			cin >> nomImageAExtraire;
+			if (nomImageAExtraire == "quit")
+				exit(0);
+			
+			// TODO: Construire le nom de fichier de l'image extraite en utilisant
+			//       la fonction construireNomFichierResultat()
+			nomFichierExtrait = construireNomFichierResultat(nomFichierPartie2, nomImageAExtraire);
 
-		// TODO: Extraire le rectangle de l'image original.
+			// TODO: Demander et lire les coins du rectangle à extraire.
+			//       ex.: Coin inferieur gauche (x y) : 580 410
+			cout << "Coin inferieur gauche (x, y) : ";
+			cin >> p1.x >> p1.y;
 
-		// TODO: Écrire l'image extraite dans un fichier. Afficher la réussite
-		//       ou l'échec de l'écriture.
+			cout << "Coin superieur droit (x, y) : ";
+			cin >> p2.x >> p2.y;
 
-		// TODO: Marquer le rectangle extrait sur l'image original (tracer le
-		//       contour sur la grande image). Utiliser une ligne noire.
+			Rectangle zone;
+			zone.coin1 = p1;
+			zone.coin2 = p2;
 
-		// TODO: Écrire (écraser) le fichier de la grande image modifiée.
-		//       Le nom du fichier est donné par « nomFichierPartie2 ».
+			// TODO: Extraire le rectangle de l'image original.
+			Image imageTotale;
+			imageTotale = lireImage(nomFichierOriginal, ok);
+			Image imageExtraite = allouerImage(p2.x - p1.x, p2.y - p1.y);
+			imageExtraite = extraireRectangle(imageTotale, zone);
+
+
+			// TODO: Écrire l'image extraite dans un fichier. Afficher la réussite
+			//       ou l'échec de l'écriture.
+			ecrireImage(nomFichierExtrait, imageExtraite, ok);
+
+			// TODO: Marquer le rectangle extrait sur l'image original (tracer le
+			//       contour sur la grande image). Utiliser une ligne noire.
+			tracerContourRectangle(imageTotale, noir, zone, 10);
+
+			// TODO: Écrire (écraser) le fichier de la grande image modifiée.
+			//       Le nom du fichier est donné par « nomFichierPartie2 ».
+			ecrireImage(nomFichierPartie2, imageTotale, ok);
+			if (ok)
+				cout << "Ecriture de l'image : OK\n\n";
+
+			desallouerImage(imageExtraite);
+			desallouerImage(imageTotale);
+
+		}
+		
+	}
 
 	// N'oubliez pas de faire les désallocations nécessaires! (dans la boucle et à l'extérieur)
 }
