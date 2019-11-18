@@ -187,8 +187,7 @@ void executerPartie2 ( )
 			if (ok)
 				cout << "Ecriture de l'image : OK\n\n";
 
-			desallouerImage(imageExtraite);
-			desallouerImage(imageTotale);
+			//desallouerImage(imageExtraite);
 
 		}
 		

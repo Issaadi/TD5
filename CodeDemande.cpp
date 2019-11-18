@@ -79,7 +79,7 @@ ecrireDonneesImage ( fstream& fichier, const Image& image )
 	//       à zéro pour le padding.
 	span <Pixel*> pixelColonne(image.pixels, image.hauteur);
 	unsigned sizeOfLine = image.largeur * sizeof(Pixel);
-	unsigned paddingSize = sizeof(calculerTaillePadding(image));
+	unsigned paddingSize = calculerTaillePadding(image);
 	uint32_t valeur = 0;
 	for (Pixel* lignePixel : pixelColonne) {
 			fichier.write((const char*)lignePixel, sizeOfLine);
@@ -186,7 +186,7 @@ copierImage ( const Image& image )
 			imageC.pixels[i][j] = image.pixels[i][j];
 		}
 	}
-	return {imageC}; // TODO: Retourner ce qu'il faut.
+	return imageC; // TODO: Retourner ce qu'il faut.
 }
 
 
@@ -226,9 +226,9 @@ extraireRectangle ( const Image& image, const Rectangle& zone )
 		imageA = allouerImage(zone.coin2.x - zone.coin1.x, zone.coin2.y - zone.coin1.y);
 
 		// TODO: Copier les pixels de la zone.
-		for (unsigned i : range(imageA.largeur)) {
-			for (unsigned j : range(imageA.hauteur)) {
-				imageA.pixels[i][j] = image.pixels[i + zone.coin1.x][j + zone.coin1.y];
+		for (unsigned i : range(imageA.hauteur)) {
+			for (unsigned j : range(imageA.largeur)) {
+				imageA.pixels[i][j] = image.pixels[i + zone.coin1.y][j + zone.coin1.x];
 			}
 		}
 	}
